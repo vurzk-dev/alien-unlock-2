@@ -25,3 +25,7 @@ Este repositorio, sus mantenedores y la organización a la que pertenece no est�
 # Contribuir 📚
 
 Si deseas contribuir al proyecto, consulta la guía [CONTRIBUTING.md](https://github.com/vurzk-dev/alien-unlock-2/blob/00d9b3443474130e858e4bdde79ddbd76aae366d/CONTRIBUTING.md) antes de comenzar.
+
+# ¿Como instalar el juego?
+
+Si quieres descargar el juego y jugarlo, puedes leer la [GUIA.md](https://github.com/vurzk-dev/alien-unlock-2/blob/63ca6dd4a2534833f1939c65c3d9e3a0408742fa/GUIA.md) para descargar el juego y jugarlo localmente.

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Alien Unlock 2 — Login</title>
+    <link rel="icon" type="image/png" href="ben10.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<div class="sw-login-box">
+    <div class="sw-logo"><img src="logo.png" alt="Alien Unlock 2"/></div>
+    <h1>Alien Unlock 2</h1>
+    <div class="sw-version" id="versionTag">v…</div>
+
+    <form id="loginForm" autocomplete="off" novalidate>
+        <div class="field-group">
+            <label for="username" id="usernameLabel">Usuario</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                maxlength="16"
+                placeholder="Escribe tu nombre..."
+                autocomplete="off"
+                spellcheck="false"
+                required
+            />
+            <div class="char-counter"><span id="charCount">0</span> / 16</div>
+        </div>
+
+        <div id="login-error" class="error-msg"></div>
+
+        <button type="submit" id="loginBtn">
+            <span id="loginBtnText">Iniciar sesión y Jugar!</span>
+        </button>
+    </form>
+</div>
+
+<script>
+(function() {
+    const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    const lang = userLang.startsWith('es') ? 'es' : 'en';
+
+    const T = {
+        es: {
+            pageTitle:    'Alien Unlock 2 — Iniciar Sesión',
+            label:        'Usuario',
+            placeholder:  'Escribe tu nombre...',
+            button:       'Iniciar sesión y Jugar!',
+            buttonLoading:'Iniciando sesión...',
+            buttonSuccess:'¡Bienvenido! Entrando...',
+            errorEmpty:   'Por favor, escribe un nombre de usuario.',
+            errorShort:   'El usuario debe tener al menos 3 caracteres.',
+            errorLong:    'El usuario no puede tener más de 16 caracteres.',
+            errorInvalid: 'Solo se permiten letras, números, guion bajo (_) y guion (-).',
+            errorServer:  'No se pudo conectar con el servidor. Inténtalo de nuevo.'
+        },
+        en: {
+            pageTitle:    'Alien Unlock 2 — Sign In',
+            label:        'Username',
+            placeholder:  'Type your name...',
+            button:       'Sign in and Play!',
+            buttonLoading:'Signing in...',
+            buttonSuccess:'Welcome! Entering...',
+            errorEmpty:   'Please enter a username.',
+            errorShort:   'Username must be at least 3 characters long.',
+            errorLong:    'Username cannot be longer than 16 characters.',
+            errorInvalid: 'Only letters, numbers, underscore (_) and dash (-) are allowed.',
+            errorServer:  'Could not connect to server. Please try again.'
+        }
+    };
+    const t = T[lang];
+
+    document.documentElement.lang = lang;
+    document.title = t.pageTitle;
+    document.getElementById('usernameLabel').textContent = t.label;
+    document.getElementById('username').placeholder      = t.placeholder;
+    document.getElementById('loginBtnText').textContent  = t.button;
+
+    const form         = document.getElementById('loginForm');
+    const input        = document.getElementById('username');
+    const charCount    = document.getElementById('charCount');
+    const errorBox     = document.getElementById('login-error');
+    const loginBtn     = document.getElementById('loginBtn');
+    const loginBtnText = document.getElementById('loginBtnText');
+    const versionTag   = document.getElementById('versionTag');
+
+    const MAX_LENGTH = 16;
+    const MIN_LENGTH = 3;
+    const USERNAME_RE = /^[A-Za-z0-9_\-]+$/;
+
+    (async function loadVersion() {
+        try {
+            const resp = await fetch('/health');
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const data = await resp.json();
+            versionTag.textContent = data.version ? ('v' + data.version) : 'v?';
+        } catch (err) {
+            console.warn('[AU2] No se pudo obtener la versión:', err);
+            versionTag.textContent = 'v?';
+        }
+    })();
+
+    input.addEventListener('input', () => {
+        if (input.value.length > MAX_LENGTH) input.value = input.value.slice(0, MAX_LENGTH);
+        charCount.textContent = input.value.length;
+
+        if (input.value.length >= MAX_LENGTH) charCount.parentElement.classList.add('limit-reached');
+        else charCount.parentElement.classList.remove('limit-reached');
+
+        if (errorBox.style.display === 'block') {
+            errorBox.style.display = 'none';
+            errorBox.textContent = '';
+        }
+    });
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    async function typeMessage(element, text, speedPerWord = 90) {
+        element.classList.add('typing');
+        element.textContent = '';
+        const words = text.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            element.textContent += (i === 0 ? '' : ' ') + words[i];
+            await sleep(speedPerWord);
+        }
+        element.classList.remove('typing');
+    }
+
+    function showError(msg) {
+        errorBox.style.display = 'block';
+        typeMessage(errorBox, msg);
+    }
+
+    function shakeInput() {
+        input.classList.remove('shake');
+        void input.offsetWidth;
+        input.classList.add('shake');
+        input.focus();
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const raw   = input.value;
+        const value = raw.trim();
+
+        if (value.length === 0)        { showError(t.errorEmpty);   shakeInput(); return; }
+        if (value.length < MIN_LENGTH) { showError(t.errorShort);   shakeInput(); return; }
+        if (value.length > MAX_LENGTH) { showError(t.errorLong);    shakeInput(); return; }
+        if (!USERNAME_RE.test(value))  { showError(t.errorInvalid); shakeInput(); return; }
+
+        loginBtn.disabled = true;
+        loginBtnText.textContent = t.buttonLoading;
+        loginBtn.classList.add('loading');
+
+        try {
+            const resp = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: value })
+            });
+
+            const data = await resp.json().catch(() => ({}));
+
+            if (!resp.ok || data.status !== 'ok') {
+                throw new Error(data.message || ('HTTP ' + resp.status));
+            }
+
+            try {
+                localStorage.setItem('au2_username', value);
+                sessionStorage.setItem('au2_username', value);
+            } catch (err) { }
+
+            loginBtn.classList.remove('loading');
+            loginBtnText.textContent = t.buttonSuccess;
+
+            await sleep(700);
+            window.location.href = 'alien-unlock-2.html';
+
+        } catch (err) {
+            console.error('[AU2] Login error:', err);
+            loginBtn.disabled = false;
+            loginBtn.classList.remove('loading');
+            loginBtnText.textContent = t.button;
+            showError(t.errorServer);
+            shakeInput();
+        }
+    });
+
+    window.addEventListener('load', () => {
+        setTimeout(() => input.focus(), 250);
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<levels>
+		<level>
+			<id>1</id>
+			<code>STNK2</code>
+			<time>900</time>
+			
+			<level2>10000</level2>
+			<level3>25000</level3>
+			
+			<map>files/maps/map2.png</map>
+			<tileset>files/assets/tileset_02.png</tileset>
+			<texture_red>files/assets/level_02_red_tex.png</texture_red>
+			<texture_green>files/assets/level_02_green_tex.png</texture_green>
+			
+			<assets>
+				<asset id="layer_1" url="files/assets/background_02.png" weight="184"/>
+				<asset id="layer_2" url="files/assets/background_02_moon.png" weight="184"/>
+				<asset id="hero" url="files/swf/hero2.swf" weight="199"/>
+				<asset id="common" url="files/swf/common.swf" weight="1578"/>
+				<asset id="level2" url="files/swf/level2.swf" weight="405"/>
+				<!-- <asset id="qte" url="http://i.cdn.turner.com/tbseurope/big/alien-unlock-2/files/swf/qte2.swf" weight="405"/> -->
+				<asset id="qte" url="files/swf/qte2.swf" weight="405"/>
+			</assets>
+			
+			<layers>
+				<layer id="layer_1" parallax="-1" y="0" scale="1"/>
+				<layer id="layer_2" parallax="-1" y="0" scale="1"/>
+				<!-- <layer id="layer_2" parallax="-1" y="0" scale="1" is_front="true"/> -->
+			</layers>
+			
+			<secrets>
+				<!-- fence -->
+				 <secret id="1" x="54" y="63" width="11" height="3">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- fence -->
+				<secret id="2" x="76" y="60" width="23" height="6">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- fence -->
+				<secret id="3" x="172" y="60" width="31" height="6">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- secret area -->
+				<secret id="4" x="25" y="66" width="45" height="13" showOnce="true">
+					<entrance x="25" y="77" />
+					<entrance x="25" y="76" />
+					<entrance x="25" y="75" />
+					<entrance x="25" y="74" />
+					
+					<!-- <entrance x="65" y="68" />
+					<entrance x="66" y="68" />
+					<entrance x="67" y="68" />
+					<entrance x="68" y="68" /> -->
+				 </secret>
+		
+				
+			</secrets>
+		</level>
+	</levels>
+</data>

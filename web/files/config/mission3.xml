@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<levels>
+		<level>
+			<id>3</id>
+			<code>BALL3</code>
+			<time>900</time>
+			
+			<level2>10000</level2>
+			<level3>25000</level3>
+			
+			<map>files/maps/map3.png</map>
+			<tileset>files/assets/tileset_03.png</tileset>
+			<texture_red>files/assets/level_03_red_tex.png</texture_red>
+			<texture_green>files/assets/level_03_green_tex.png</texture_green>
+			
+			<assets>
+				<asset id="layer_1" url="files/assets/background_03.png" weight="184"/>
+				<asset id="hero" url="files/swf/hero3.swf" weight="199"/>
+				<asset id="common" url="files/swf/common.swf" weight="1578"/>
+				<asset id="level3" url="files/swf/level3.swf" weight="405"/>
+				<!-- <asset id="qte" url="http://i.cdn.turner.com/tbseurope/big/alien-unlock-2/files/swf/qte3.swf" weight="405"/> -->
+				<asset id="qte" url="files/swf/qte3.swf" weight="405"/>
+			</assets>
+			
+			<layers>
+				<layer id="layer_1" parallax="-1" y="0" scale="1"/>
+				<!-- <layer id="layer_2" parallax="-1" y="0" scale="1" is_front="true"/> -->
+			</layers>
+			
+			<secrets>
+				<secret id="1" x="80" y="17" width="18" height="28" showOnce="true">
+					<entrance x="97" y="20" />
+					<entrance x="97" y="21" />
+					<entrance x="97" y="22" />
+					<entrance x="97" y="23" />
+				</secret>
+					
+				<secret id="2" x="178" y="54" width="19" height="13" showOnce="true">
+					<entrance x="196" y="62" />
+					<entrance x="196" y="63" />
+					<entrance x="196" y="64" />
+				</secret>
+		
+				
+			</secrets>
+		</level>
+	</levels>
+</data>

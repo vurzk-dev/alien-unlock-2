@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <section name="paths">
+        <!-- appURL = webRoot  -->
+        <vr name="appRoot" value="../"/>
+    </section>
+
+    <!-- ===========================
+          Preload Assets : individual paths can be amended
+     =========================== -->
+    <section name="startup-assets-content">
+        <loader connections="3" base="" preventCache="false">
+            <asset id="LINKS" src="xml/links.xml" preventCache="false"/>
+            <asset id="CSS" src="css/flashstyles.css" preventCache="false"/>
+            <asset id="COPY" src="text/copy.xml" preventCache="false"/>
+            <asset id="FONT" src="fonts/fonts.swf" preventCache="false"/>
+            <asset id="UNLOCK_LOGO" src="assets/alien_unlock_logo.swf"/>
+        </loader>
+    </section>
+
+    <section name="constants">
+        <constants>
+            <entry type="com.jollywise.content.model::UserModel">
+                <const name="MISSIONS_LOCKED" type="boolean">true</const>
+            </entry>
+            <entry type="com.jollywise.content.model::ConfigModel">
+                <const name="PROMO_LEFT" type="string">promo_left</const>
+                <const name="PROMO_RIGHT" type="string">promo_right</const>
+            </entry>
+            <entry type="com.jollywise.content.model::VideoStateModel">
+                <const name="AUTOPLAY_VIDEO" type="boolean">true</const>
+            </entry>
+            <entry type="com.jollywise.content.model::ApplicationConstants">
+                <const name="PLAY_MISSION" type="string">playMission</const>
+            </entry>
+            <entry type="com.jollywise.content.model::TrackingModel">
+                <const name="WISETRACK_TRACKING_ENABLED" type="boolean">false</const>
+                <const name="OMNITURE_TRACKING_ENABLED" type="boolean">false</const>
+            </entry>
+            <entry type="com.jollywise.content.model::MissionsModel">
+                <!-- ===========================
+                      Mission ID's
+                     =========================== -->
+                <const name="MISSION01" type="string">mission01</const>
+                <const name="MISSION02" type="string">mission02</const>
+                <const name="MISSION03" type="string">mission03</const>
+                <const name="MISSION04" type="string">mission04</const>
+                <const name="MISSION05" type="string">mission05</const>
+            </entry>
+            <entry type="com.jollywise.content.model::NavigationModel">
+                <const name="HOME" type="string">HOME</const>
+                <const name="MISSIONSELECT" type="string">MISSIONSELECT</const>
+                <const name="MISSIONSTATUS" type="string">MISSIONSTATUS</const>
+            </entry>
+            <entry type="com.jollywise.content.model::SoundModel">
+                <const name="IS_MUTED" type="boolean">true</const>
+                <const name="AMBIENT_DELAY" type="int">3000</const>
+                <const name="SOUND_VOLUME" type="number">0.8</const>
+                <const name="MUSIC_VOLUME" type="number">0.2</const>
+                <const name="AMBIENT_VOLUME" type="number">0.1</const>
+            </entry>
+            <entry type="com.jollywise.content.view.sections.missionstatus::MissionStatusMediator">
+                <const name="VIDEO_ENABLED" type="boolean">true</const>
+            </entry>
+            <entry type="com.jollywise.content.view.sections.home::HomeMediator">
+                <const name="LOGO_X" type="int">466</const>
+                <const name="LOGO_Y" type="int">220</const>
+                <const name="LOGO_SCALE" type="number">1</const>
+            </entry>
+        </constants>
+    </section>
+
+    <!-- ===========================
+           MISSION - ALIEN NAMES (used for download-assets and mission-assets, prepending name on downloaded file, or using name for file)
+     =========================== -->
+    <section name="mission-alien-ids">
+        <vr name="mission01" value="crashhopper"/>
+        <vr name="mission02" value="stinkfly"/>
+        <vr name="mission03" value="ball_weevil"/>
+        <vr name="mission04" value="armodrillo"/>
+        <vr name="mission05" value="humungousaur"/>
+    </section>
+
+    <!-- ===========================
+           MISSION - NEMESIS NAMES
+     =========================== -->
+    <section name="mission-nemesis-ids">
+        <vr name="mission01" value="mucillator"/>
+        <vr name="mission02" value="buglizard"/>
+        <vr name="mission03" value="terraranchula"/>
+        <vr name="mission04" value="slamworm"/>
+        <vr name="mission05" value="tyrannopede"/>
+    </section>
+
+    <!-- ===========================
+           ASSET PATHS : currently relative
+           paths can be amended to absolute eg : http://d432n4bv07rfb.cloudfront.net/unlock2/assets/audio/ambient.swf
+     =========================== -->
+    <section name="asset-paths">
+        <!--
+              base_url - use to load assets from another domain. Ignored if commented out
+        -->
+        <!--<vr name="base_url" value="http://myomnitrix.com/dev/repack/"/>-->
+
+        <!--COMMON-->
+        <vr name="ambient_audio" value="assets/audio/ambient.swf"/>
+        <vr name="misson_nemesis_thumb" value="assets/missions/thumbs/nemesis_{missionID}.jpg"/>
+        <vr name="nemesis_image" value="assets/nemesis/{missionID}_{imageID}.png"/>
+        <vr name="nemesis_gallery_image" value="assets/nemesis/{missionID}_{imageID}.jpg"/>
+        <vr name="nemesis_thumbnail01" value="assets/nemesis/{missionID}_thumb01.jpg"/>
+        <vr name="nemesis_thumbnail02" value="assets/nemesis/{missionID}_thumb02.jpg"/>
+        <vr name="nemesis_thumbnail03" value="assets/nemesis/{missionID}_thumb03.jpg"/>
+        <vr name="instructions" value="assets/instructions/{missionID}.swf"/>
+        <vr name="controls" value="assets/controls/{missionID}.swf"/>
+
+        <!--LOCALISED-->
+        <vr name="omniture_tracking" value="xml/omniture_tracking.xml"/>
+        <vr name="promo_left" value="assets/banners/banner_left.jpg"/>
+        <vr name="promo_right" value="assets/banners/banner_right.jpg"/>
+        <vr name="mission_video" value="assets/videos/{missionID}.flv"/>
+    </section>
+</data>

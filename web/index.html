@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Alien Unlock 2</title>
+    <link rel="icon" type="image/png" href="ben10.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="sw-check-box">
+    <div class="sw-logo"><img src="logo.png" alt="Alien Unlock 2"/></div>
+    <h1>Alien Unlock 2</h1>
+    <div class="sw-version" id="versionTag">v…</div>
+
+    <div id="checks">
+        <div class="check-row" id="check-session"><span class="check-icon loading"></span><span class="check-label">Validando Sesión...</span></div>
+        <div class="check-row" id="check-server"><span class="check-icon loading"></span><span class="check-label">Conectando al servidor...</span></div>
+        <div class="check-row" id="check-antiframe"><span class="check-icon loading"></span><span class="check-label">Anti-frame protección</span></div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-text">
+            <span id="progress-label">Iniciando...</span>
+            <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div id="global-error" class="error-msg"></div>
+    <div id="global-success" class="success-msg"></div>
+
+    <button id="retry-btn" style="display:none" onclick="location.reload()">Reintentar verificación</button>
+</div>
+
+<script>
+(async function() {
+    const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    const lang = userLang.startsWith('es') ? 'es' : 'en';
+
+    const T = {
+        es: {
+            pageTitle:      'Alien Unlock 2',
+            checkSession:   'Validando Sesión...',
+            checkServer:    'Conectando al servidor...',
+            checkAntiframe: 'Anti-frame protección',
+            sessionReady:   'Listo para empezar',
+            serverOk:       'Servidor en línea',
+            serverFail:     'No se pudo conectar al servidor',
+            antiframeOk:    'Protección Anti-frame activa',
+            antiframeFail:  'Protección Anti-frame comprometida',
+            phaseSession:   'Verificando usuario...',
+            phaseServer:    'Conectando con el servidor...',
+            phaseAntiframe: 'Optimizando la protección...',
+            phaseEnter:     'Ingresando...',
+            retry:          'Reintentar verificación',
+            lock:           'Otra verificación está en curso. Espera o recarga la página.',
+            failVerify:     'No se pudo completar la verificación ({list}).',
+            successAll:     '¡Verificación completa! Ingresando...',
+            critical:       'Ha ocurrido un error crítico. Por favor, inténtalo de nuevo.',
+            failServer:     'servidor',
+            failAntiframe:  'anti-frame'
+        },
+        en: {
+            pageTitle:      'Alien Unlock 2',
+            checkSession:   'Validating Session...',
+            checkServer:    'Connecting to server...',
+            checkAntiframe: 'Anti-frame protection',
+            sessionReady:   'Ready to start',
+            serverOk:       'Server online',
+            serverFail:     'Could not connect to server',
+            antiframeOk:    'Anti-frame protection active',
+            antiframeFail:  'Anti-frame protection compromised',
+            phaseSession:   'Verifying user...',
+            phaseServer:    'Connecting to server...',
+            phaseAntiframe: 'Optimizing protection...',
+            phaseEnter:     'Entering...',
+            retry:          'Retry verification',
+            lock:           'Another verification is in progress. Please wait or reload.',
+            failVerify:     'Verification could not be completed ({list}).',
+            successAll:     'Verification complete! Entering...',
+            critical:       'A critical error occurred. Please try again.',
+            failServer:     'server',
+            failAntiframe:  'anti-frame'
+        }
+    };
+    const t = T[lang];
+
+    document.documentElement.lang = lang;
+    document.title = t.pageTitle;
+    document.querySelector('#check-session .check-label').textContent   = t.checkSession;
+    document.querySelector('#check-server .check-label').textContent    = t.checkServer;
+    document.querySelector('#check-antiframe .check-label').textContent = t.checkAntiframe;
+    document.getElementById('progress-label').textContent = t.phaseSession;
+    document.getElementById('retry-btn').textContent      = t.retry;
+
+    const LOCK_KEY = 'au2_index_lock';
+    const now = Date.now();
+    let lockData = sessionStorage.getItem(LOCK_KEY);
+    let shouldBlock = false;
+    if (lockData) {
+        try {
+            const { timestamp } = JSON.parse(lockData);
+            if (now - timestamp < 30000) shouldBlock = true;
+            else sessionStorage.removeItem(LOCK_KEY);
+        } catch(e) { sessionStorage.removeItem(LOCK_KEY); }
+    }
+    if (shouldBlock) {
+        const errBox = document.getElementById('global-error');
+        errBox.style.display = 'block';
+        errBox.textContent = t.lock;
+        document.getElementById('retry-btn').style.display = 'block';
+        return;
+    }
+    sessionStorage.setItem(LOCK_KEY, JSON.stringify({ timestamp: now }));
+    const clearLock = () => sessionStorage.removeItem(LOCK_KEY);
+    window.addEventListener('beforeunload', clearLock);
+    setTimeout(clearLock, 30000);
+
+    const progressFill    = document.getElementById('progress-fill');
+    const progressPercent = document.getElementById('progress-percent');
+    const progressLabel   = document.getElementById('progress-label');
+    const retryBtn        = document.getElementById('retry-btn');
+    const globalError     = document.getElementById('global-error');
+    const globalSuccess   = document.getElementById('global-success');
+    const versionTag      = document.getElementById('versionTag');
+
+    let skipped = false, currentPercent = 0;
+    let sessionResolved = false, sessionVerified = false;
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function updateProgressUI(percent) {
+        currentPercent = percent;
+        progressFill.style.width = percent + '%';
+        progressPercent.textContent = percent + '%';
+        progressPercent.style.color = percent >= 60 ? '#14663a' : '#1e8449';
+    }
+
+    function setRow(id, state, message) {
+        const row = document.getElementById(id);
+        if (!row) return;
+        const icon  = row.querySelector('.check-icon');
+        const label = row.querySelector('.check-label');
+        icon.classList.remove('loading', 'ok', 'fail', 'skip');
+        void icon.offsetWidth;
+        if (state === 'ok')        icon.classList.add('ok');
+        else if (state === 'fail') icon.classList.add('fail');
+        else if (state === 'skip') icon.classList.add('skip');
+        else                       icon.classList.add('loading');
+        if (message !== undefined) label.textContent = message;
+    }
+
+    async function typeMessage(element, text, speedPerWord = 110) {
+        element.classList.add('typing');
+        element.textContent = '';
+        const words = text.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            element.textContent += (i === 0 ? '' : ' ') + words[i];
+            await sleep(speedPerWord);
+        }
+        element.classList.remove('typing');
+    }
+
+    function showGlobalError(msg) {
+        globalError.style.display = 'block';
+        retryBtn.style.display = 'block';
+        typeMessage(globalError, msg);
+    }
+    function showGlobalSuccess(msg) {
+        globalSuccess.style.display = 'block';
+        typeMessage(globalSuccess, msg);
+    }
+
+    async function fetchWithTimeout(url, options = {}, timeout = 5000) {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeout);
+        try { return await fetch(url, Object.assign({}, options, { signal: controller.signal })); }
+        finally { clearTimeout(id); }
+    }
+
+    function animateProgress(target, duration, label) {
+        return new Promise(resolve => {
+            if (skipped) { updateProgressUI(target); resolve(); return; }
+            progressLabel.textContent = label;
+            const start = currentPercent;
+            const startTime = performance.now();
+            function frame(now) {
+                if (skipped) { updateProgressUI(target); resolve(); return; }
+                const elapsed  = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased    = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                const current  = start + (target - start) * eased;
+                updateProgressUI(Math.floor(current));
+                if (progress < 1) requestAnimationFrame(frame);
+                else { updateProgressUI(target); resolve(); }
+            }
+            requestAnimationFrame(frame);
+        });
+    }
+
+    const sessionPromise = (async () => {
+        try {
+            sessionVerified = true;
+            sessionResolved = true;
+            setRow('check-session', 'ok', t.sessionReady);
+            return { ok: true };
+        } catch (err) {
+            console.error('[AU2] Session check failed:', err);
+            sessionVerified = false;
+            sessionResolved = true;
+            setRow('check-session', 'fail', 'Error de sesión');
+            return { ok: false };
+        }
+    })();
+
+    const serverPromise = (async () => {
+        try {
+            const resp = await fetchWithTimeout('/health', {}, 5000);
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const data = await resp.json().catch(() => ({}));
+
+            if (data.version) {
+                versionTag.textContent = 'v' + data.version;
+            } else {
+                versionTag.textContent = 'v?';
+            }
+
+            setRow('check-server', 'ok', t.serverOk + (data.version ? ' (' + data.version + ')' : ''));
+            return true;
+        } catch (err) {
+            console.error('[AU2] Server check failed:', err);
+            versionTag.textContent = 'v?';
+            setRow('check-server', 'fail', t.serverFail);
+            return false;
+        }
+    })();
+
+    const antiFramePromise = (async () => {
+        try {
+            if (window.top !== window.self) throw new Error('framed');
+            setRow('check-antiframe', 'ok', t.antiframeOk);
+            return true;
+        } catch (err) {
+            console.error('[AU2] Anti-frame check failed:', err);
+            setRow('check-antiframe', 'fail', t.antiframeFail);
+            return false;
+        }
+    })();
+
+    try {
+        await animateProgress(20, 2000, t.phaseSession);
+        await animateProgress(50, 2000, t.phaseServer);
+        await animateProgress(70, 1500, t.phaseAntiframe);
+
+        const [sessionResult, serverOk, antiFrameOk] = await Promise.all([
+            sessionPromise, serverPromise, antiFramePromise
+        ]);
+
+        const failures = [];
+        if (!serverOk)    failures.push(t.failServer);
+        if (!antiFrameOk) failures.push(t.failAntiframe);
+
+        if (failures.length > 0) {
+            showGlobalError(t.failVerify.replace('{list}', failures.join(', ')));
+            clearLock();
+            return;
+        }
+
+        await animateProgress(100, 1500, t.phaseEnter);
+        showGlobalSuccess(t.successAll);
+        await sleep(1200);
+        clearLock();
+
+        window.location.href = 'login.html';
+
+    } catch (err) {
+        console.error(err);
+        showGlobalError(t.critical);
+        clearLock();
+    }
+})();
+</script>
+</body>
+</html>

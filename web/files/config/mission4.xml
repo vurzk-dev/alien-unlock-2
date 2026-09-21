@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<levels>
+		<level>
+			<id>4</id>
+			<code>AMDL4</code>
+			<time>900</time>
+			
+			<level2>10000</level2>
+			<level3>25000</level3>
+			
+			<map>files/maps/map4.png</map>
+			<tileset>files/assets/tileset_04.png</tileset>
+			<texture_red>files/assets/level_04_red_tex.png</texture_red>
+			<texture_green>files/assets/level_04_green_tex.png</texture_green>
+			
+			<assets>
+				<asset id="layer_1" url="files/assets/background_04.png" weight="184"/>
+				<asset id="hero" url="files/swf/hero4.swf" weight="199"/>
+				<asset id="common" url="files/swf/common.swf" weight="1578"/>
+				<asset id="level4" url="files/swf/level4.swf" weight="405"/>
+				<asset id="qte" url="files/swf/qte4.swf" weight="405"/>
+				<!-- <asset id="qte" url="http://i.cdn.turner.com/tbseurope/big/alien-unlock-2/files/swf/qte4.swf" weight="405"/> -->
+			</assets>
+			
+			<layers>
+				<layer id="layer_1" parallax="-1" y="0" scale="1"/>
+			</layers>
+			
+			<secrets>
+				<!-- fence -->
+				<secret id="1" x="0" y="60" width="22" height="6">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- fence -->
+				<secret id="2" x="46" y="63" width="13" height="3">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- secret in building -->
+				<secret id="3" x="172" y="42" width="25" height="24" showOnce="true">
+					<entrance x="196" y="46" />
+					<entrance x="196" y="47" />
+					<entrance x="196" y="48" />
+					<entrance x="196" y="49" />
+	
+					<!-- <entrance x="196" y="65" />
+					<entrance x="196" y="64" />
+					<entrance x="196" y="63" />
+					<entrance x="196" y="62" /> -->
+				</secret>
+				
+				<!-- fence -->
+				<secret id="4" x="261" y="60" width="31" height="6">
+					<entrance x="-1" y="-1" />
+				</secret>
+				
+				<!-- secret underground -->
+				<secret id="5" x="1" y="69" width="27" height="10" showOnce="true">
+					<entrance x="27" y="74" />
+					<entrance x="27" y="75" />
+					<entrance x="27" y="76" />
+					<entrance x="27" y="77" />
+				</secret>
+			</secrets>
+		</level>
+	</levels>
+</data>

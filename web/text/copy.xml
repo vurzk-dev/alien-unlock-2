@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ===========================
+
+**************************
+***** VERY IMPORTANT ***** : Any text surrounded with {} is a variable and MUST NOT BE TRANSLATED
+**************************
+
+defaultstyle : This style is applied to all copy strings that have no style attribute
+node with style='none' have styling applied in flash, but they use elements from the stylesheet
+
+=========================== -->
+
+<data defaultstyle="bodyText">
+    <!-- ===========================
+			ERRORS
+     =========================== -->
+    <item id="error_generic_message"><![CDATA[There seems to be a problem with the website at the moment. Please try again later.]]></item>
+    <item id="error_button_close" style="errorbutton"><![CDATA[Close window]]></item>
+    <item id="error_button_refresh" style="errorbutton"><![CDATA[Refresh]]></item>
+
+    <!-- ===========================
+          HOME
+   =========================== -->
+    <item id="home_startBtn" style="home_startBtn"><![CDATA[Play Game]]></item>
+
+    <!-- ===========================
+          MISSION STATUS
+   =========================== -->
+    <item id="status_instructionsBtn" style="status_instructionsBtn"><![CDATA[Instructions]]></item>
+    <item id="status_controlsBtn" style="status_controlsBtn"><![CDATA[Controls]]></item>
+    <item id="status_playMissionBtn" style="status_playMissionBtn"><![CDATA[Play Mission]]></item>
+    <item id="status_lockedText" style="status_lockedText"><![CDATA[Locked]]></item>
+    <item id="status_nemotrixBtn" style="status_nemotrixBtn"><![CDATA[Nemetrix]]></item>
+    <item id="status_locked" style="status_introText"><![CDATA[You need to play all previous missions to unlock this one!]]></item>
+    <item id="status_scoreLabel" style="status_scoreLabel"><![CDATA[Best Score:]]></item>
+    <item id="status_timeLabel" style="status_timeLabel"><![CDATA[Best Time:]]></item>
+    <item id="status_badgesLabel" style="status_badgesLabel"><![CDATA[Badges:]]></item>
+    <item id="status_score" style="status_score"><![CDATA[{score}]]></item>
+    <item id="status_time" style="status_time"><![CDATA[{time}]]></item>
+
+    <!-- ===========================
+          HEADER
+   =========================== -->
+    <item id="header_message" style="header_message"><![CDATA[]]></item>
+
+    <!-- ===========================
+          FOOTER
+   =========================== -->
+    <item id="footer_homeBtn" style="footer_homeBtn"><![CDATA[Home]]></item>
+    <item id="footer_message" style="none"><![CDATA[<span class="footer_message_line1">Choose an alien<br></span><span class="footer_message_line2">to play</span>]]></item>
+
+    <!-- ===========================
+          ALIEN NAMES - styles are applied via code | Using {name}_hp and {name}_ap in flashstyles.css
+   =========================== -->
+    <item id="mission01_alien_name" style="none"><![CDATA[Crashhopper]]></item>
+    <item id="mission02_alien_name" style="none"><![CDATA[Stinkfly]]></item>
+    <item id="mission03_alien_name" style="none"><![CDATA[Ball Weevil]]></item>
+    <item id="mission04_alien_name" style="none"><![CDATA[Armodrillo]]></item>
+    <item id="mission05_alien_name" style="none"><![CDATA[Humungousaur]]></item>
+
+    <!-- ===========================
+          NEMESIS NAMES - styles are applied via code | Using {name}_title and {name}_button_label in flashstyles.css
+   =========================== -->
+    <item id="mission01_nemesis_name" style="none"><![CDATA[Mucillator]]></item>
+    <item id="mission02_nemesis_name" style="none"><![CDATA[Buglizard]]></item>
+    <item id="mission03_nemesis_name" style="none"><![CDATA[Terraranchula]]></item>
+    <item id="mission04_nemesis_name" style="none"><![CDATA[Slamworm]]></item>
+    <item id="mission05_nemesis_name" style="none"><![CDATA[Tyrannopede]]></item>
+
+    <!-- ===========================
+          NEMESIS DESCRIPTIONS
+   =========================== -->
+    <item id="mission01_nemesis_description" style="nemesis_description"><![CDATA[Mucillator is a Nemetrix alien, predator of Crashhopper. It has sticky sacks all over his body which trap its prey.]]></item>
+    <item id="mission02_nemesis_description" style="nemesis_description"><![CDATA[Buglizard is a Nemetrix alien, predator of Stinkfly. It's a very fast alien with razor sharp claws and the power to emit clouds of smoke for camouflage or escaping purposes.]]></item>
+    <item id="mission03_nemesis_description" style="nemesis_description"><![CDATA[Terroranchula is a Nemetrix alien, predator of Ball Weevil. It can nullify Ball Weevil’s explosive gummy balls by shooting webs from its mouth.]]></item>
+    <item id="mission04_nemesis_description" style="nemesis_description"><![CDATA[Slamworm is a Nemetrix alien, predator of Armodrillo.  It  is equipped with sharp spikes on his back and the ability to dig underground tunnels on solid rock or even metal.]]></item>
+    <item id="mission05_nemesis_description" style="nemesis_description"><![CDATA[Tyrannopede is a Nemetrix alien, predator of Humungousaur. It's a very strong alien with razor sharp teeth and can shoot silky threadlike material from its horn, which wraps its prey in a cocoon.]]></item>
+
+    <!-- ===========================
+          MISSION NAMES
+   =========================== -->
+    <item id="mission01_name" style="mission01_name"><![CDATA[Crashhopper]]></item>
+    <item id="mission02_name" style="mission02_name"><![CDATA[Stinkfly]]></item>
+    <item id="mission03_name" style="mission03_name"><![CDATA[Ball Weevil]]></item>
+    <item id="mission04_name" style="mission04_name"><![CDATA[Armodrillo]]></item>
+    <item id="mission05_name" style="mission05_name"><![CDATA[Humungousaur]]></item>
+
+    <!-- ===========================
+          MISSION DESCRIPTIONS
+   =========================== -->
+    <item id="mission01_description" style="mission_description"><![CDATA[The Omnitrix stabiliser core has been stolen by Khyber! Don't forget to collect the code letters.]]></item>
+    <item id="mission02_description" style="mission_description"><![CDATA[Still on the trail of Khyber's dog, Ben tracks him to Bellwood and gives chase.]]></item>
+    <item id="mission03_description" style="mission_description"><![CDATA[Khyber’s dog has escaped back to his base. Time to rock n’ roll with Ball Weevil though Bellwood!]]></item>
+    <item id="mission04_description" style="mission_description"><![CDATA[Ben must track Khyber's dog and try to find a way to reach Khyber's location.]]></item>
+    <item id="mission05_description" style="mission_description"><![CDATA[Finally! Ben has transformed into Humungousaur and smashed his way in. Find Khyber and get  the Omnitrix core back.]]></item>
+
+    <!-- ===========================
+          GAME
+   =========================== -->
+    <item id="game_back_to_missions" style="none"><![CDATA[Back to missions]]></item>
+    <item id="game_level1" style="game_level"><![CDATA[Attack 1]]></item>
+    <item id="game_level2" style="game_level"><![CDATA[Attack 2]]></item>
+    <item id="game_level3" style="game_level"><![CDATA[Attack 3]]></item>
+</data>

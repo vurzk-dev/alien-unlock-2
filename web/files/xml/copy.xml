@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+<!-- HUD -->	
+	<item id="loading"><![CDATA[loading...]]></item>
+	<item id="btn_instructions"><![CDATA[instructions]]></item>
+	<item id="btn_controls"><![CDATA[controls]]></item>
+	<item id="btn_play_mission"><![CDATA[play mission!]]></item>
+	<item id="btn_play_again"><![CDATA[play again]]></item>
+	<item id="btn_next_mission"><![CDATA[next mission]]></item>
+	<item id="btn_missions"><![CDATA[missions]]></item>
+	<item id="btn_retry"><![CDATA[retry]]></item>
+	<item id="label_pause"><![CDATA[pause]]></item>
+	<item id="label_mission"><![CDATA[mission]]></item>
+	<item id="label_score"><![CDATA[score]]></item>
+	<item id="label_badges"><![CDATA[badges]]></item>
+	<item id="label_code"><![CDATA[code]]></item>
+	<item id="label_level"><![CDATA[level]]></item>
+	<item id="label_bonus"><![CDATA[bonus]]></item>
+	<item id="label_bonuses"><![CDATA[bonuses]]></item>
+	<item id="label_total_score"><![CDATA[total score]]></item>
+	<item id="label_mins"><![CDATA[mins]]></item>
+	<item id="label_secs"><![CDATA[secs]]></item>
+	<item id="label_min"><![CDATA[min]]></item>
+	<item id="label_sec"><![CDATA[sec]]></item>
+	<item id="label_attack1"><![CDATA[attack 1]]></item>
+	<item id="label_attack2"><![CDATA[attack 2]]></item>
+	<item id="label_attack3"><![CDATA[attack 3]]></item>
+	
+<!-- Mission Names -->
+	<item id="label_mission1"><![CDATA[<font size="22">crashhopper</font>]]></item>
+	<item id="label_mission2"><![CDATA[stinkfly]]></item>
+	<item id="label_mission3"><![CDATA[<font size="22">ball weevil</font>]]></item>
+	<item id="label_mission4"><![CDATA[<font size="22">armodrillo</font>]]></item>
+	<item id="label_mission5"><![CDATA[<font size="20">humungousaur</font>]]></item>
+
+<!-- Mission End Copy -->	
+
+	<item id="start1"><![CDATA[Our hiding place is blocked but we still need to slow him down, old friend.]]></item>
+
+	<item id="start2"><![CDATA[Ben Tennyson is hot on our heels, still. We can't let him interfere. Stop him!]]></item>
+
+	<item id="start3"><![CDATA[Ben has tried and failed to enter my hiding place. Surely now he is nearly out of time!]]></item>
+
+	<item id="start4"><![CDATA[We need to slow Ben Tennyson down, but his aliens are proving resilient in a fight!]]></item>
+	
+	<item id="start5"><![CDATA[Curses! Ben Tennyson has broken through the barrier! We must flee with the stabiliser.]]></item>
+	
+	<item id="mission_unlucky"><![CDATA[You need to find all the code letters to finish the mission!]]></item>
+	<item id="mission_complete"><![CDATA[mission complete!]]></item>
+	<item id="mission_success_copy_1"><![CDATA[Well done! You completed the mission in the following time]]></item>
+	<item id="mission_fail"><![CDATA[game over]]></item>
+	<item id="mission_fail_copy_1"><![CDATA[Unlucky, the mission got the better of you this time...]]></item>
+	
+ 
+ <!-- QTE mini games -->
+	
+	<item id="QTE_well_done"><![CDATA[points!]]></item>
+
+ 
+
+</data>

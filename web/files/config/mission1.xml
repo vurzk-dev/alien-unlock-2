@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<levels>
+		<level>
+			<id>1</id>
+			<code>CRSH1</code>
+			<time>900</time>
+			
+			<level2>10000</level2>
+			<level3>25000</level3>
+			
+			<map>files/maps/map1.png</map>
+			<tileset>files/assets/tileset_01.png</tileset>
+			<texture_red>files/assets/level_01_red_tex.png</texture_red>
+			<texture_green>files/assets/level_01_green_tex.png</texture_green>
+			
+			<assets>
+				<asset id="layer_1" url="files/assets/background_01.png" weight="184"/>
+				<asset id="hero" url="files/swf/hero1.swf" weight="199"/>
+				<asset id="common" url="files/swf/common.swf" weight="1578"/>
+				<asset id="level1" url="files/swf/level1.swf" weight="405"/>
+				<!-- <asset id="qte" url="http://i.cdn.turner.com/tbseurope/big/alien-unlock-2/files/swf/qte1.swf" weight="405"/> -->
+				<asset id="qte" url="files/swf/qte1.swf" weight="405"/>
+			</assets>
+			
+			<layers>
+				<layer id="layer_1" parallax="-1" y="0" scale="1"/>
+				<!-- <layer id="layer_2" parallax="-1" y="0" scale="1" is_front="true"/> -->
+			</layers>
+			
+			<secrets>
+				<secret id="1" x="62" y="37" width="102" height="43" showOnce="true">
+					<entrance x="62" y="72" />
+					<entrance x="62" y="73" />
+					<entrance x="62" y="74" />
+					<entrance x="62" y="75" />
+					<entrance x="62" y="76" />
+					
+				
+					<entrance x="163" y="58" />
+					<entrance x="163" y="59" />
+					<entrance x="163" y="60" />
+					<entrance x="163" y="61" />
+					
+					<entrance x="110" y="37" />
+					<entrance x="110" y="38" />
+					<entrance x="109" y="39" />
+					<entrance x="109" y="40" />
+					<entrance x="109" y="41" />
+			
+				</secret>
+			</secrets>
+		</level>
+	</levels>
+</data>

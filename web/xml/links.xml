@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <!-- ===========================
+          Stack buttons on header homepage
+     =========================== -->
+    <vr name="stacked_buttons_hp" value="false"/>
+
+    <!-- ===========================
+          External Links
+     =========================== -->
+    <vr name="promo_left" value="//www.cartoonnetworkhq.net/show/mixed-shows/games/toon-cup" target="_blank"/>
+    <vr name="promo_right" value="//www.cartoonnetworkhq.net/show/ben-10-omniverse/games/alien-unlock" target="_blank"/>
+</data>

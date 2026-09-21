@@ -1,0 +1,53 @@
+<omniture-tracking>
+
+  <config>
+	<!-- LIVE REPORT SUITE - Please remove above dev resport suite and uncomment below once site is approved -->
+	<account>turnerukcnhq,turnerukglobal</account>
+	<siteID>cnhq</siteID>
+    <server>cartoonnetworkhq.net</server>
+    <pageURL>www.cartoonnetworkhq.net/show/ben-10-omniverse/games/ben-10-ben-10-alien-unlock-2</pageURL>
+    <channel>show</channel>
+	<prop3>ben 10 omniverse</prop3>
+	<prop4>ben-10-alien-unlock-2</prop4> <!-- Can set this here as content type doesn't change for Alien Unlock -->
+    <prop5>ben-10-alien-unlock-2</prop5>
+	<charset>UTF-8</charset>
+    <currencyCode>GBP</currencyCode>
+    <cookieDomainPeriods>3</cookieDomainPeriods>
+    <trackClickMap>true</trackClickMap>
+    <movieID></movieID>
+    <debugTracking>true</debugTracking>
+    <trackLocal>true</trackLocal>
+    <trackingServer>tenilstats.turner.com</trackingServer>
+    <visitorNamespace>turneruk</visitorNamespace>
+    <dc>112</dc>
+	<linkTrackVars>channel,prop3,prop4,prop5,prop32</linkTrackVars>
+  </config>
+
+  <tracking>
+  
+    <event id="homepage">
+      <pageName>cnhq:show:ben-10-omniverse:ben-10-alien-unlock-2:homepage</pageName>
+	  </event> 
+	  
+	<event id="missionselect">
+      <pageName>cnhq:show:ben-10-omniverse:ben-10-alien-unlock-2:homepage:missionselect</pageName>
+      <trackLinkCustom descr="ben-10-alien-unlock-2">//www.cartoonnetworkhq.net/show/ben-10-omniverse/games/ben-10-ben-10-alien-unlock-2</trackLinkCustom>
+    </event>
+	
+	<event id="missionplay">
+      <pageName>cnhq:show:ben-10-omniverse:ben-10-alien-unlock-2:homepage:missionplay</pageName>
+      <trackLinkCustom descr="ben-10-alien-unlock-2">//www.cartoonnetworkhq.net/show/ben-10-omniverse/games/ben-10-ben-10-alien-unlock-2</trackLinkCustom>
+    </event>
+	
+	<event id="missionwon">
+      <pageName>cnhq:show:ben-10-omniverse:ben-10-alien-unlock-2:homepage:missionwon</pageName>
+      <trackLinkCustom descr="ben-10-alien-unlock-2">//www.cartoonnetworkhq.net/show/ben-10-omniverse/games/ben-10-ben-10-alien-unlock-2</trackLinkCustom>
+    </event>
+	
+	<event id="missionlost">
+      <pageName>cnhq:show:ben-10-omniverse:ben-10-alien-unlock-2:homepage:missionlost</pageName>
+      <trackLinkCustom descr="ben-10-alien-unlock-2">//www.cartoonnetworkhq.net/show/ben-10-omniverse/games/ben-10-ben-10-alien-unlock-2</trackLinkCustom>
+    </event>
+
+</tracking>
+</omniture-tracking>

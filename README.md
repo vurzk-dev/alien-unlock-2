@@ -11,6 +11,9 @@
 <a href="https://github.com/vurzk-dev/alien-unlock-2/tree/mark">
     <img alt="Stars" src="https://img.shields.io/github/stars/vurzk-dev/alien-unlock-2?label=Stars&style=for-the-badge">
 </a>
+<a href="https://discord.gg/bjhZeSnaeU">
+    <img alt="Discord" src="https://img.shields.io/badge/Discord-Join-7289DA?style=for-the-badge&logo=discord&logoColor=white">
+</a>
     </p>
     Este es un proyecto de código abierto y preservación de Alien Unlock 2, cuyo objetivo es reproducir el juego original con la mayor fidelidad posible.
   
